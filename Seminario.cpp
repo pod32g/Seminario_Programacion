@@ -1,4 +1,5 @@
 #include "masajes.h"
+#include "clientes.h"
 
 using namespace std;
 
@@ -7,6 +8,7 @@ int main()
     bool _exit = false;
     int menu;
     menu_masaje menu_m;
+    menu_cliente menu_c;
     
     while (!_exit) {
 
@@ -27,6 +29,7 @@ int main()
             break;
     
             case 2:
+                menu_c.show_menu();
             break;
     
             case 3:
