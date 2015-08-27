@@ -101,7 +101,7 @@ private:
 
         return id;
     }
-    
+
     int m_menu;
 
 
@@ -115,7 +115,7 @@ public:
 
         while (!_salir) {
             std::system("cls");
-            std::cout<<"**Masajistas**\nSeleccione una opcion\n1-Nuevo Masajista\n2-Buscar masajista\n3-Modificar Masajista\n4-Eliminar Masajista\n5-Salir\n";
+            std::cout<<"**Masajistas**\nSeleccione una opcion\n1-Nuevo Masajista\n2-Buscar masajista\n3-Modificar Masajista\n4-Eliminar Masajista\n5-Mostrar todo el registro\n6-Salir\n";
                 try{
                     std::cin>>m_menu;
                 }
@@ -177,10 +177,10 @@ public:
                     _m.erase(m_id);
                 break;
                 case 5:
-                    _salir = true;
+                    _m.show_all();
                 break;
                 case 6:
-                    _m.show_all();
+                    _salir = true;
                 break;
             }
         }
