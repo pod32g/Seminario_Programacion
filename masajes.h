@@ -36,7 +36,7 @@ public:
         }
     }
 
-    void search(int id) {
+    int search(int id) {
         std::system("cls");
         for (int i = 0; i < mas.size(); ++i)
         {
@@ -44,8 +44,10 @@ public:
             {
                 std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
                 std::system("pause");
+                return 1;
             }
         }
+        return 0;
     }
 
     void modify(int id, std::string data, int caso) {
@@ -72,6 +74,18 @@ public:
         }
     }
 
+    void erase(int id) {
+        int index;
+        for (int i = 0; i < mas.size(); ++i)
+        {
+            if (mas[i].id_mas == id)
+            {
+                index = i;
+            }
+        }
+        mas.erase(mas.begin() + index);
+    }
+
 
 };
 
@@ -87,10 +101,7 @@ private:
 
         return id;
     }
-
-    void mostrar(int id);
-    void modificar(int id);
-    void eliminar(int id);
+    
     int m_menu;
 
 
@@ -99,7 +110,7 @@ public:
     void show_menu() {
        
         bool _salir = false;
-        std::string mas_name, mas_special;
+        std::string mas_name, mas_special, _aux;
         int mas_edad, m_id, s_menu; 
 
         while (!_salir) {
@@ -129,7 +140,11 @@ public:
                 case 2:
                     std::system("cls");
                     std::cout<<"Ingrese el ID a buscar: "; std::cin>>m_id;
-                    _m.search(m_id);
+                    if (_m.search(m_id) != 1)
+                    {
+                        std::cout<<"Masajista no encontrado\n";
+                        std::system("pause");
+                    }
                 break;
                 case 3:
                     std::system("cls");
@@ -144,9 +159,8 @@ public:
                         break;
                         case 2:
                             std::cin.get();
-                            std::string aux;
-                            std::cout<<"Ingrese la nueva edad: "; std::getline(std::cin, aux);
-                            _m.modify(m_id, aux, s_menu);
+                            std::cout<<"Ingrese la nueva edad: "; std::getline(std::cin, _aux);
+                            _m.modify(m_id, _aux, s_menu);
                         break;
                         case 3:
                             std::cin.get();
@@ -158,9 +172,15 @@ public:
                     std::cout<<"\nDatos guardados\n";
                 break;
                 case 4:
+                    std::cout<<"Ingrese id del masajista a eliminar: "; std::cin>>m_id; 
+                    std::cout<<std::endl;
+                    _m.erase(m_id);
                 break;
                 case 5:
                     _salir = true;
+                break;
+                case 6:
+                    _m.show_all();
                 break;
             }
         }
