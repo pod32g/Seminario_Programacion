@@ -30,17 +30,32 @@ public:
     }
 
     void show_all() {
+        std::system("cls");
         for(int i = 0; i < mas.size(); i++) {
             std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
             std::system("pause");
         }
     }
 
-    int search(int id) {
+    int search_id(int id) {
         std::system("cls");
         for (int i = 0; i < mas.size(); ++i)
         {
             if (mas[i].id_mas == id)
+            {
+                std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
+                std::system("pause");
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    int search_name(std::string b_name) {
+        std::system("cls");
+        for (int i = 0; i < mas.size(); ++i)
+        {
+            if (mas[i].nombre == b_name)
             {
                 std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
                 std::system("pause");
@@ -139,12 +154,28 @@ public:
                 break;
                 case 2:
                     std::system("cls");
-                    std::cout<<"Ingrese el ID a buscar: "; std::cin>>m_id;
-                    if (_m.search(m_id) != 1)
-                    {
-                        std::cout<<"Masajista no encontrado\n";
-                        std::system("pause");
+                    std::cout<<"Seleccione opcion:\n1-Busqueda por ID\n2-Busqueda por nombre\n";
+                    std::cin>>s_menu;
+                    switch(s_menu) {
+                        case 1:
+                            std::cout<<"Ingrese el ID a buscar: "; std::cin>>m_id;
+                            if (_m.search_id(m_id) != 1)
+                            {
+                                std::cout<<"Masajista no encontrado\n";
+                                std::system("pause");
+                            }
+                        break;
+                        case 2:
+                            std::cin.get();
+                            std::cout<<"Ingrese nombre a buscar: "; std::getline(std::cin, mas_name);
+                            if (_m.search_name(mas_name) != 1)
+                            {
+                                std::cout<<"Masajista no encontrado\n";
+                                std::system("pause");
+                            }
+                        break;
                     }
+                   
                 break;
                 case 3:
                     std::system("cls");
