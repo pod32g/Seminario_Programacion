@@ -110,9 +110,9 @@ private:
 
     clientes _c;
 
-    int capturar(std::string nom, std::string e-mail, int tel) {
+    int capturar(std::string nom, std::string __mail, int tel) {
         int id = rand() % 10;
-        _c.save_data(id, nom, e-mail, tel);
+        _c.save_data(id, nom, __mail, tel);
 
         return id;
     }
@@ -146,7 +146,6 @@ public:
                     std::cout<<"Correo: ";
                     std::cin.get();
                     std::getline(std::cin, cli_correo); std::cout<<std::endl;
-                    std::cin>>cli_edad; std::cout<<std::endl;
                     std::cout<<"telefono: ";
                     std::cin>>cli_tel; std::cout<<std::endl;
                     std::cout<<"Cliente guardado con id: "<<capturar(cli_name, cli_correo, cli_tel)<<std::endl;
