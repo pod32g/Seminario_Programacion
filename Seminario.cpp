@@ -1,7 +1,4 @@
-#include "masajes.h"
-#include "clientes.h"
-#include "servicios.h"
-#include "productos.h"
+#include "nota_venta.h"
 
 using namespace std;
 
@@ -13,6 +10,7 @@ int main()
     menu_cliente menu_c;
     menu_servicios menu_s;
     menu_productos menu_p;
+    nota_venta n_venta;
     
     while (!_exit) {
 
@@ -45,8 +43,11 @@ int main()
             break;
     
             case 5:
+                n_venta.set_data(menu_c.dump_data(), menu_m.dump_data(), menu_s.dump_data(), menu_p.dump_data());
+                n_venta.generate();
                 
             break;
+            
             case 6:
                 _exit = true;
             break;

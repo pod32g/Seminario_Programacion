@@ -101,6 +101,29 @@ public:
         pro.erase(pro.begin() + index);
     }
 
+    std::string get_name(int id) {
+        for (int i = 0; i < pro.size(); ++i)
+        {
+            if (pro[i].id_producto == id)
+            {
+                return pro[i].nombre;
+            }
+        }
+
+        return "No encontrado";
+    }
+
+    int get_price(int id) {
+        for (int i = 0; i < pro.size(); ++i)
+        {
+            if (pro[i].id_producto == id)
+            {
+                return pro[i].precio;
+            }
+        }
+        return 0;
+    }
+
 
 };
 
@@ -121,6 +144,10 @@ private:
 
 
 public:
+
+    productos dump_data() {
+        return _p;
+    }
 
     void show_menu() {
        

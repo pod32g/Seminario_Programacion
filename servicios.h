@@ -97,6 +97,35 @@ public:
         ser.erase(ser.begin() + index);
     }
 
+    std::string get_description(int id) {
+
+        for (int i = 0; i < ser.size(); ++i)
+        {
+            if (ser[i].codigo == id)
+            {
+                return ser[i].descripcion;
+                
+            }
+        }
+
+        return "No encontrado";
+    }
+
+    int get_precio(int id) {
+
+        for (int i = 0; i < ser.size(); ++i)
+        {
+            if (ser[i].codigo == id)
+            {
+                
+                return ser[i].p_max;
+                
+            }
+        }
+
+        return 0;
+    }
+
 
 };
 
@@ -117,6 +146,10 @@ private:
 
 
 public:
+
+    servicios dump_data() {
+        return _s;
+    }
 
     void show_menu() {
        

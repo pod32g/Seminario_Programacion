@@ -122,6 +122,10 @@ private:
 
 public:
 
+    masajes dump_data() {
+        return _m;
+    }
+
     void show_menu() {
        
         bool _salir = false;

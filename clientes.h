@@ -122,6 +122,10 @@ private:
 
 public:
 
+    clientes dump_data() {
+        return _c;
+    }
+
     void show_menu() {
        
         bool _salir = false;
