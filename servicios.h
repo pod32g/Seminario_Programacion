@@ -138,16 +138,15 @@ class menu_servicios {
 
 private:
 
-    std::vector<int> v;
+    int v[1000];
 
     servicios _s;
 
     int capturar(std::string _descripcion, int __min, int __max, int __time) {
         std::srand(std::time(NULL));
-        std::random_shuffle(v.begin(), v.end());
+        std::random_shuffle(&v[0], &v[1000]);
 
-        int x = v[1];
-        v.erase(v.begin());
+        int x = v[i];
         _s.save_data(x, _descripcion, __min, __max, __time);
 
         return x;
@@ -161,7 +160,7 @@ public:
     menu_servicios() {
         for (int i = 0; i < 1000; ++i)
         {
-            v.push_back(i);
+            v[i] = i;
         }
     }
 
