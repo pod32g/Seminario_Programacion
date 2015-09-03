@@ -3,7 +3,8 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
-
+#include <algorithm> 
+#include <ctime>
 
 class masajes {
 private:
@@ -110,17 +111,30 @@ private:
 
     masajes _m;
 
-    int capturar(std::string nom, int e, std::string special) {
-        int id = rand() % 10;
-        _m.save_data(id, nom, e, special);
+    std::vector<int> v;
 
-        return id;
+    int capturar(std::string nom, int e, std::string special) {
+        std::srand(std::time(NULL));
+        std::random_shuffle(v.begin(), v.end());
+
+        int x = v[1];
+        v.erase(v.begin());
+        _m.save_data(x, nom, e, special);
+
+        return x;
     }
 
     int m_menu;
 
 
 public:
+
+    menu_masaje() {
+        for (int i = 0; i < 1000; ++i)
+        {
+            v.push_back(i);
+        }
+    }
 
     masajes dump_data() {
         return _m;

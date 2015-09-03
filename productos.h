@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
+#include <algorithm> 
+#include <ctime>
 
 
 class productos {
@@ -133,17 +135,30 @@ private:
 
     productos _p;
 
-    int capturar(std::string nom, std::string __description, float price) {
-        int id = rand() % 10;
-        _p.save_data(id, nom, __description, price);
+    std::vector<int> v;
 
-        return id;
+    int capturar(std::string nom, std::string __description, float price) {
+        std::srand(std::time(NULL));
+        std::random_shuffle(v.begin(), v.end());
+
+        int x = v[1];
+        v.erase(v.begin());
+        _p.save_data(x, nom, __description, price);
+
+        return x;
     }
 
     int p_menu;
 
 
 public:
+
+    menu_productos() {
+        for (int i = 0; i < 1000; ++i)
+        {
+            v.push_back(i);
+        }
+    }
 
     productos dump_data() {
         return _p;

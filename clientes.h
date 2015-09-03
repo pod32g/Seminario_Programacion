@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
+#include <algorithm> 
+#include <ctime>
 
 
 class clientes {
@@ -110,17 +112,31 @@ private:
 
     clientes _c;
 
-    int capturar(std::string nom, std::string __mail, int tel) {
-        int id = rand() % 10;
-        _c.save_data(id, nom, __mail, tel);
+    std::vector<int> v;
 
-        return id;
+    int capturar(std::string nom, std::string __mail, int tel) {
+
+        std::srand(std::time(NULL));
+        std::random_shuffle(v.begin(), v.end());
+
+        int x = v[1];
+        v.erase(v.begin());
+        _c.save_data(x, nom, __mail, tel);
+
+        return x;
     }
 
     int c_menu;
 
 
 public:
+
+    menu_cliente() {
+        for (int i = 0; i < 1000; ++i)
+        {
+            v.push_back(i);
+        }
+    }
 
     clientes dump_data() {
         return _c;

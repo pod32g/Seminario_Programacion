@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
+#include <algorithm> 
+#include <ctime> 
 
 
 class servicios {
@@ -21,7 +23,10 @@ private:
 
 public:
 
+
+
     void save_data(int id, std::string description, int _min, int _max, int _time) {
+
         servicio s;
         s.codigo = id;
         s.descripcion = description;
@@ -133,19 +138,32 @@ class menu_servicios {
 
 private:
 
+    std::vector<int> v;
+
     servicios _s;
 
     int capturar(std::string _descripcion, int __min, int __max, int __time) {
-        int id = rand() % 10;
-        _s.save_data(id, _descripcion, __min, __max, __time);
+        std::srand(std::time(NULL));
+        std::random_shuffle(v.begin(), v.end());
 
-        return id;
+        int x = v[1];
+        v.erase(v.begin());
+        _s.save_data(x, _descripcion, __min, __max, __time);
+
+        return x;
     }
 
     int s_menu;
 
 
 public:
+
+    menu_servicios() {
+        for (int i = 0; i < 1000; ++i)
+        {
+            v.push_back(i);
+        }
+    }
 
     servicios dump_data() {
         return _s;
