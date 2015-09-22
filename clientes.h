@@ -120,7 +120,7 @@ private:
         std::srand(std::time(NULL));
         std::random_shuffle(v.begin(), v.end());
 
-        int x = v[1];
+        int x = v[0];
         v.erase(v.begin());
         _c.save_data(x, nom, __mail, tel);
 
