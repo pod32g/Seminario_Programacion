@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm> 
 #include <ctime>
+#include <limits>
 
 class masajes {
 private:
@@ -149,10 +150,18 @@ public:
         while (!_salir) {
             std::system("cls");
             std::cout<<"**Masajistas**\nSeleccione una opcion\n1-Nuevo Masajista\n2-Buscar masajista\n3-Modificar Masajista\n4-Eliminar Masajista\n5-Mostrar todo el registro\n6-Salir\n";
+                std::cin>>m_menu;
                 try{
-                    std::cin>>m_menu;
+                    if (std::cin.fail())
+                    {
+                        throw "Ingrese un Numero valido";
+                    }
                 }
-                catch(int err) {
+                catch(const char* error) {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                    std::cout<<"Error Inesperado\n"<<error<<"\n";
+                    std::cin.get();
                 }
             switch(m_menu) {
                 case 1:

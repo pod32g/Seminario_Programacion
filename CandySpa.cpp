@@ -1,4 +1,5 @@
 #include "nota_venta.h"
+#include <limits>
 
 using namespace std;
 
@@ -29,13 +30,19 @@ public:
             system("cls");
             cout<<"Seleccione una opcion\n1-Masajistas\n2-Clientes\n3-Servicios\n4-Productos\n5-Nota de Venta\n6-Salir"<<endl;
 
-            try {
-                cin>>menu;
-            }
-        
-            catch(int err) {
-        
-            }
+            cin>>menu;
+                try{
+                    if (cin.fail())
+                    {
+                        throw "Ingrese un Numero valido";
+                    }
+                }
+                catch(const char* error) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cout<<"Error Inesperado:\n"<<error<<"\n";
+                    cin.get();
+                }
         
             switch(menu) {
                 case 1:

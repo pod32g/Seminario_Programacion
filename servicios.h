@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm> 
 #include <ctime> 
+#include <limits>
 
 
 class servicios {
@@ -146,7 +147,7 @@ private:
         std::srand(std::time(NULL));
         std::random_shuffle(&v[0], &v[1000]);
 
-        int x = v[i];
+        int x = v[0];
         _s.save_data(x, _descripcion, __min, __max, __time);
 
         return x;
@@ -177,10 +178,18 @@ public:
         while (!_salir) {
             std::system("cls");
             std::cout<<"**Servicios**\nSeleccione una opcion\n1-Nuevo Servicio\n2-Buscar Servicio\n3-Modificar Servicio\n4-Eliminar Servicio\n5-Mostrar todo el registro\n6-Salir\n";
+                std::cin>>s_menu;
                 try{
-                    std::cin>>s_menu;
+                    if (std::cin.fail())
+                    {
+                        throw "Ingrese un Numero valido";
+                    }
                 }
-                catch(int err) {
+                catch(const char* error) {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+                    std::cout<<"Error Inesperado\n"<<error<<"\n";
+                    std::cin.get();
                 }
             switch(s_menu) {
                 case 1:
