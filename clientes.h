@@ -6,7 +6,7 @@
 #include <algorithm> 
 #include <ctime>
 #include <limits>
-
+#include "pre.h"
 
 class clientes {
 private:
@@ -33,21 +33,23 @@ public:
     }
 
     void show_all() {
-        std::system("cls");
+        clear();
         for(int i = 0; i < cli.size(); i++) {
             std::cout<<"ID: "<<cli[i].id_cliente<<"\nNombre: "<<cli[i].nombre<<"\nCorreo: "<<cli[i].correo<<"\nTelefono: "<<cli[i].telefono<<"\n";
-            std::system("pause");
+            std::cout<<"Presione enter para continuar...\n";
+            std::cin.get();
         }
     }
 
     int search_id(int id) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < cli.size(); ++i)
         {
             if (cli[i].id_cliente == id)
             {
                 std::cout<<"ID: "<<cli[i].id_cliente<<"\nNombre: "<<cli[i].nombre<<"\nCorreo: "<<cli[i].correo<<"\nTelefono: "<<cli[i].telefono<<"\n";
-                std::system("pause");
+                std::cout<<"Presione enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -55,13 +57,14 @@ public:
     }
 
     int search_name(std::string b_name) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < cli.size(); ++i)
         {
             if (cli[i].nombre == b_name)
             {
                 std::cout<<"ID: "<<cli[i].id_cliente<<"\nNombre: "<<cli[i].nombre<<"\nCorreo: "<<cli[i].correo<<"\nTelefono: "<<cli[i].telefono<<"\n";
-                std::system("pause");
+                std::cout<<"Presione enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -150,7 +153,7 @@ public:
         int cli_tel, c_id, s_menu; 
 
         while (!_salir) {
-            std::system("cls");
+            clear();
             std::cout<<"**Clientes**\nSeleccione una opcion\n1-Nuevo Cliente\n2-Buscar cliente\n3-Modificar Cliente\n4-Eliminar Cliente\n5-Mostrar todo el registro\n6-Salir\n";
                 std::cin>>c_menu;
                 try{
@@ -168,7 +171,7 @@ public:
             switch(c_menu) {
                 case 1:
                     
-                    std::system("cls");
+                    clear();
                     std::cout<<"Nombre: ";
                     std::cin.get();
                     std::getline(std::cin, cli_name); std::cout<<std::endl;
@@ -178,11 +181,12 @@ public:
                     std::cout<<"telefono: ";
                     std::cin>>cli_tel; std::cout<<std::endl;
                     std::cout<<"Cliente guardado con id: "<<capturar(cli_name, cli_correo, cli_tel)<<std::endl;
-                    std::system("pause");
+                    std::cout<<"Presione enter para continuar...\n";
+                    std::cin.get();
 
                 break;
                 case 2:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione opcion:\n1-Busqueda por ID\n2-Busqueda por nombre\n";
                     std::cin>>s_menu;
                     switch(s_menu) {
@@ -191,7 +195,8 @@ public:
                             if (_c.search_id(c_id) != 1)
                             {
                                 std::cout<<"Cliente no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                         case 2:
@@ -200,16 +205,17 @@ public:
                             if (_c.search_name(cli_name) != 1)
                             {
                                 std::cout<<"Cliente no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                     }
                    
                 break;
                 case 3:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Ingrese el ID a modificar: "; std::cin>>c_id;
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione dato a modificar\n1-Nombre\n2-Correo\n3-Telefono: "; std::cin>>s_menu;
                     switch(s_menu) {
                         case 1:
@@ -228,7 +234,7 @@ public:
                             _c.modify(c_id, _aux, s_menu);
                         break;
                     }
-                    std::system("cls");
+                    clear();
                     std::cout<<"\nDatos guardados\n";
                 break;
                 case 4:

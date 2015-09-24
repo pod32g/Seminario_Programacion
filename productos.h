@@ -6,6 +6,7 @@
 #include <algorithm> 
 #include <ctime>
 #include <limits>
+#include "pre.h"
 
 
 class productos {
@@ -33,21 +34,23 @@ public:
     }
 
     void show_all() {
-        std::system("cls");
+        clear();
         for(int i = 0; i < pro.size(); i++) {
             std::cout<<"ID: "<<pro[i].id_producto<<"\nNombre: "<<pro[i].nombre<<"\nDescripcion: "<<pro[i].descripcion<<"\nPrecio: "<<pro[i].precio<<"\n";
-            std::system("pause");
+            std::cout<<"Presione la tecla Enter para continuar...\n";
+            std::cin.get();
         }
     }
 
     int search_id(int id) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < pro.size(); ++i)
         {
             if (pro[i].id_producto == id)
             {
                 std::cout<<"ID: "<<pro[i].id_producto<<"\nNombre: "<<pro[i].nombre<<"\nDescripcion: "<<pro[i].descripcion<<"\nPrecio: "<<pro[i].precio<<"\n";
-                std::system("pause");
+                std::cout<<"Presione la tecla Enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -55,13 +58,14 @@ public:
     }
 
     int search_name(std::string b_name) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < pro.size(); ++i)
         {
             if (pro[i].nombre == b_name)
             {
                 std::cout<<"ID: "<<pro[i].id_producto<<"\nNombre: "<<pro[i].nombre<<"\nDescripcion: "<<pro[i].descripcion<<"\nPrecio: "<<pro[i].precio<<"\n";
-                std::system("pause");
+                std::cout<<"Presione la tecla Enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -173,7 +177,7 @@ public:
         float pro_precio; 
 
         while (!_salir) {
-            std::system("cls");
+            clear();
             std::cout<<"**Productos**\nSeleccione una opcion\n1-Nuevo producto\n2-Buscar producto\n3-Modificar producto\n4-Eliminar producto\n5-Mostrar todo el registro\n6-Salir\n";
                 std::cin>>p_menu;
                 try{
@@ -191,7 +195,7 @@ public:
             switch(p_menu) {
                 case 1:
                     
-                    std::system("cls");
+                    clear();
                     std::cout<<"Nombre: ";
                     std::cin.get();
                     std::getline(std::cin, pro_name); std::cout<<std::endl;
@@ -201,11 +205,12 @@ public:
                     std::cout<<"Precio: ";
                     std::cin>>pro_precio; std::cout<<std::endl;
                     std::cout<<"producto guardado con id: "<<capturar(pro_name, pro_descripcion, pro_precio)<<std::endl;
-                    std::system("pause");
+                    std::cout<<"Presione la tecla Enter para continuar...\n";
+                    std::cin.get();
 
                 break;
                 case 2:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione opcion:\n1-Busqueda por ID\n2-Busqueda por nombre\n";
                     std::cin>>s_menu;
                     switch(s_menu) {
@@ -214,7 +219,8 @@ public:
                             if (_p.search_id(p_id) != 1)
                             {
                                 std::cout<<"producto no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione la tecla Enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                         case 2:
@@ -223,16 +229,17 @@ public:
                             if (_p.search_name(pro_name) != 1)
                             {
                                 std::cout<<"producto no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione la tecla Enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                     }
                    
                 break;
                 case 3:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Ingrese el ID a modificar: "; std::cin>>p_id;
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione dato a modificar\n1-Nombre\n2-Correo\n3-Precio: "; std::cin>>s_menu;
                     switch(s_menu) {
                         case 1:
@@ -251,7 +258,7 @@ public:
                             _p.modify(p_id, _aux, s_menu);
                         break;
                     }
-                    std::system("cls");
+                    clear();
                     std::cout<<"\nDatos guardados\n";
                 break;
                 case 4:

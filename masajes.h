@@ -6,6 +6,7 @@
 #include <algorithm> 
 #include <ctime>
 #include <limits>
+#include "pre.h"
 
 class masajes {
 private:
@@ -32,21 +33,23 @@ public:
     }
 
     void show_all() {
-        std::system("cls");
+        clear();
         for(int i = 0; i < mas.size(); i++) {
             std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
-            std::system("pause");
+            std::cout<<"Presione Enter para continuar...\n";
+            std::cin.get();
         }
     }
 
     int search_id(int id) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < mas.size(); ++i)
         {
             if (mas[i].id_mas == id)
             {
                 std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
-                std::system("pause");
+                std::cout<<"Presione Enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -54,13 +57,14 @@ public:
     }
 
     int search_name(std::string b_name) {
-        std::system("cls");
+        clear();
         for (int i = 0; i < mas.size(); ++i)
         {
             if (mas[i].nombre == b_name)
             {
                 std::cout<<"ID: "<<mas[i].id_mas<<"\nNombre: "<<mas[i].nombre<<"\nEdad: "<<mas[i].edad<<"\nEspecialidad: "<<mas[i].especialidad<<"\n";
-                std::system("pause");
+                std::cout<<"Presione Enter para continuar...\n";
+                std::cin.get();
                 return 1;
             }
         }
@@ -148,7 +152,7 @@ public:
         int mas_edad, m_id, s_menu; 
 
         while (!_salir) {
-            std::system("cls");
+            clear();
             std::cout<<"**Masajistas**\nSeleccione una opcion\n1-Nuevo Masajista\n2-Buscar masajista\n3-Modificar Masajista\n4-Eliminar Masajista\n5-Mostrar todo el registro\n6-Salir\n";
                 std::cin>>m_menu;
                 try{
@@ -161,12 +165,13 @@ public:
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     std::cout<<"Error Inesperado\n"<<error<<"\n";
+                    std::cout<<"Presione Enter para continuar...\n";
                     std::cin.get();
                 }
             switch(m_menu) {
                 case 1:
                     
-                    std::system("cls");
+                    clear();
                     std::cout<<"Nombre: ";
                     std::cin.get();
                     std::getline(std::cin, mas_name); std::cout<<std::endl;
@@ -176,11 +181,12 @@ public:
                     std::cin.get();
                     std::getline(std::cin, mas_special); std::cout<<std::endl;
                     std::cout<<"Masajista guardado con id: "<<capturar(mas_name, mas_edad, mas_special)<<std::endl;
-                    std::system("pause");
+                    std::cout<<"Presione Enter para continuar...\n";
+                    std::cin.get();
 
                 break;
                 case 2:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione opcion:\n1-Busqueda por ID\n2-Busqueda por nombre\n";
                     std::cin>>s_menu;
                     switch(s_menu) {
@@ -189,25 +195,28 @@ public:
                             if (_m.search_id(m_id) != 1)
                             {
                                 std::cout<<"Masajista no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione Enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                         case 2:
+                            std::cout<<"Presione Enter para continuar...\n";
                             std::cin.get();
                             std::cout<<"Ingrese nombre a buscar: "; std::getline(std::cin, mas_name);
                             if (_m.search_name(mas_name) != 1)
                             {
                                 std::cout<<"Masajista no encontrado\n";
-                                std::system("pause");
+                                std::cout<<"Presione Enter para continuar...\n";
+                                std::cin.get();
                             }
                         break;
                     }
                    
                 break;
                 case 3:
-                    std::system("cls");
+                    clear();
                     std::cout<<"Ingrese el ID a modificar: "; std::cin>>m_id;
-                    std::system("cls");
+                    clear();
                     std::cout<<"Seleccione dato a modificar\n1-Nombre\n2-Edad\n3-Especialidad: "; std::cin>>s_menu;
                     switch(s_menu) {
                         case 1:
@@ -226,7 +235,7 @@ public:
                             _m.modify(m_id, mas_special, s_menu);
                         break;
                     }
-                    std::system("cls");
+                    clear();
                     std::cout<<"\nDatos guardados\n";
                 break;
                 case 4:

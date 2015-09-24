@@ -27,7 +27,7 @@ public:
 
         while (!_exit) {
 
-            system("cls");
+            clear();
             cout<<"Seleccione una opcion\n1-Masajistas\n2-Clientes\n3-Servicios\n4-Productos\n5-Nota de Venta\n6-Salir"<<endl;
 
             cin>>menu;

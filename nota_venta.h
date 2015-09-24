@@ -8,7 +8,6 @@
 #include "servicios.h"
 #include "productos.h"
 
-
 class nota_venta {
 
 private:
@@ -34,11 +33,12 @@ public:
 		float cost;
 		int precio, duracion;
 
-		std::system("cls");
+		clear();
 		std::cout<<"Nota creada\n";
 		note <<"Cliente: "<< id_cli <<"\n"<<"Fecha: "<<fecha<<"\n"<<"Servicio: "<<ser.get_description(id_ser)<<" Costo: $"<<ser.get_precio(id_ser)<<"\nProducto Vendido: "<<pro.get_name(id_pro)<<" Costo: $"<<pro.get_price(id_pro)<<"\nTotal: "<<pro.get_price(id_pro) + ser.get_precio(id_ser)<<"\n"; 
 		std::cout<<"Cliente: "<< id_cli <<"\n"<<"Fecha: "<<fecha<<"\n"<<"Servicio: "<<ser.get_description(id_ser)<<" Costo: $"<<ser.get_precio(id_ser)<<"\nProducto Vendido: "<<pro.get_name(id_pro)<<" Costo: $"<<pro.get_price(id_pro)<<"\nTotal: "<<pro.get_price(id_pro) + ser.get_precio(id_ser)<<"\n";
-		std::system("pause"); 
+		std::cout<<"Presione la tecla enter para continuar\n";
+		std::cin.get(); 
 	}
 
 	void generate() {
