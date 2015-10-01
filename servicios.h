@@ -6,7 +6,14 @@
 #include <algorithm> 
 #include <ctime> 
 #include <limits>
-#include "pre.h"
+
+#ifdef _WIN32 || _WIN64
+    #define CLEAR std::system("cls");
+    #define PAUSE std::system("pause");
+#else 
+    #define CLEAR std::system("clear");
+    #define PAUSE std::system("sleep 5s");
+#endif
 
 
 class servicios {
@@ -39,23 +46,23 @@ public:
     }
 
     void show_all() {
-        clear();
+        CLEAR
         for(int i = 0; i < ser.size(); i++) {
             std::cout<<"Codigo: "<<ser[i].codigo<<"\nDescripcion: "<<ser[i].descripcion<<"\nPrecio Minimo: "<<ser[i].p_min<<"\nPrecio Maximo: "<<ser[i].p_max<<"\nDuracion: "<<ser[i].duracion<<"\n";
-            std::cout<<"Presione la tecla Enter para continuar...\n";
-            std::cin.get();
+            PAUSE
+            
         }
     }
 
     int search_id(int id) {
-        clear();
+        CLEAR
         for (int i = 0; i < ser.size(); ++i)
         {
             if (ser[i].codigo == id)
             {
                 std::cout<<"Codigo: "<<ser[i].codigo<<"\nDescripcion: "<<ser[i].descripcion<<"\nPrecio Minimo: "<<ser[i].p_min<<"\nPrecio Maximo: "<<ser[i].p_max<<"\nDuracion: "<<ser[i].duracion<<"\n";
-                std::cout<<"Presione la tecla Enter para continuar...\n";
-                std::cin.get();
+                PAUSE
+                
                 return 1;
             }
         }
@@ -179,7 +186,7 @@ public:
         int ser_min, s_id, s_menu, ser_max, dur; 
 
         while (!_salir) {
-            clear();
+            CLEAR
             std::cout<<"**Servicios**\nSeleccione una opcion\n1-Nuevo Servicio\n2-Buscar Servicio\n3-Modificar Servicio\n4-Eliminar Servicio\n5-Mostrar todo el registro\n6-Salir\n";
                 std::cin>>s_menu;
                 try{
@@ -197,7 +204,7 @@ public:
             switch(s_menu) {
                 case 1:
                     
-                    clear();
+                    CLEAR
                     std::cout<<"Descripcion: ";
                     std::cin.get();
                     std::getline(std::cin, ser_des); std::cout<<std::endl;
@@ -208,24 +215,24 @@ public:
                     std::cout<<"Duracion: ";
                     std::cin>>dur; std::cout<<std::endl;
                     std::cout<<"Servicio guardado con Codigo: "<<capturar(ser_des, ser_min, ser_max, dur)<<std::endl;
-                    std::cout<<"Presione la tecla Enter para continuar...\n";
-                    std::cin.get();
+                    PAUSE
+                    
 
                 break;
                 case 2:
-                    clear();
+                    CLEAR
                     std::cout<<"Ingrese el Codigo a buscar: "; std::cin>>s_id;
                     if (_s.search_id(s_id) != 1)
                     {
                         std::cout<<"Servicio no encontrado\n";
-                        std::cout<<"Presione la tecla Enter para continuar...\n";
-                        std::cin.get();
+                        PAUSE
+                        
                     }
                 break;
                 case 3:
-                    clear();
+                    CLEAR
                     std::cout<<"Ingrese el Codigo del servicio a modificar: "; std::cin>>s_id;
-                    clear();
+                    CLEAR
                     std::cout<<"Seleccione dato a modificar\n1-Descripcion\n2-Precio Minimo\n3-Precio Maximo\n4-Duracion\n"; std::cin>>s_menu;
                     switch(s_menu) {
                         case 1:
@@ -249,7 +256,7 @@ public:
                             _s.modify(s_id, _aux, s_menu); 
                         break;
                     }
-                    clear();
+                    CLEAR
                     std::cout<<"\nDatos guardados\n";
                 break;
                 case 4:

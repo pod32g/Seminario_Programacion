@@ -1,14 +1,7 @@
-#include <cstdlib>;
-
 #ifdef _WIN32 || _WIN64
-
-    void clear() {
-        std::system("cls");
-    }
-
+	#define CLEAR std::system("cls");
+	#define PAUSE std::system("pause");
 #else 
-    void clear() {
-        std::system("clear")
-    }
-
+    #define CLEAR std::system("clear");
+	#define PAUSE std::system("sleep 5s");
 #endif

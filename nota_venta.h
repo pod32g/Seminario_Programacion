@@ -8,6 +8,14 @@
 #include "servicios.h"
 #include "productos.h"
 
+#ifdef _WIN32 || _WIN64
+	#define CLEAR std::system("cls");
+	#define PAUSE std::system("pause");
+#else 
+    #define CLEAR std::system("clear");
+	#define PAUSE std::system("sleep 5s");
+#endif
+
 class nota_venta {
 
 private:
@@ -33,18 +41,17 @@ public:
 		float cost;
 		int precio, duracion;
 
-		clear();
+		CLEAR;
 		std::cout<<"Nota creada\n";
 		note <<"Cliente: "<< id_cli <<"\n"<<"Fecha: "<<fecha<<"\n"<<"Servicio: "<<ser.get_description(id_ser)<<" Costo: $"<<ser.get_precio(id_ser)<<"\nProducto Vendido: "<<pro.get_name(id_pro)<<" Costo: $"<<pro.get_price(id_pro)<<"\nTotal: "<<pro.get_price(id_pro) + ser.get_precio(id_ser)<<"\n"; 
 		std::cout<<"Cliente: "<< id_cli <<"\n"<<"Fecha: "<<fecha<<"\n"<<"Servicio: "<<ser.get_description(id_ser)<<" Costo: $"<<ser.get_precio(id_ser)<<"\nProducto Vendido: "<<pro.get_name(id_pro)<<" Costo: $"<<pro.get_price(id_pro)<<"\nTotal: "<<pro.get_price(id_pro) + ser.get_precio(id_ser)<<"\n";
-		std::cout<<"Presione la tecla enter para continuar\n";
-		std::cin.get(); 
+		PAUSE
 	}
 
 	void generate() {
 		
 		std::string date; 
-		std::system("cls");
+		CLEAR
 		std::cout<<"-Generar Nota de venta-\nIngrese el id del cliente\n";
 		std::cin>>_id_cli;
 		std::cout<<"\nIngrese la fecha dd/mm/aa\n";

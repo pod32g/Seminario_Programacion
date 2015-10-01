@@ -1,6 +1,14 @@
 #include "nota_venta.h"
 #include <limits>
 
+#ifdef _WIN32 || _WIN64
+    #define CLEAR std::system("cls");
+    #define PAUSE std::system("pause");
+#else 
+    #define CLEAR std::system("clear");
+    #define PAUSE std::system("sleep 5s");
+#endif
+
 using namespace std;
 
 class SpaCandy
@@ -27,7 +35,7 @@ public:
 
         while (!_exit) {
 
-            clear();
+            CLEAR
             cout<<"Seleccione una opcion\n1-Masajistas\n2-Clientes\n3-Servicios\n4-Productos\n5-Nota de Venta\n6-Salir"<<endl;
 
             cin>>menu;
